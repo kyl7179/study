@@ -31,10 +31,9 @@ public class HashMapIsNotThreadSafeTest {
 
 		System.out.println("============ ConcurrentHashMap ==========");
 		test(concurrentHashMap);
-
 	}
 
-	private static void test(final Map<String, Integer> hashMap) throws InterruptedException {
+	private static void test(final Map<String, Integer> map) throws InterruptedException {
 		final String id = "shawn";
 
 		ExecutorService service = Executors.newFixedThreadPool(10);
@@ -42,7 +41,7 @@ public class HashMapIsNotThreadSafeTest {
 			final int finalI = i;
 			service.execute(new Runnable() {
 				public void run() {
-					hashMap.put(id, finalI);
+					map.put(id, finalI);
 				}
 			});
 		}
@@ -51,8 +50,8 @@ public class HashMapIsNotThreadSafeTest {
 
 		service.shutdown();
 
-		System.out.println("expected map size is '1', test result is '" + hashMap.size() + "'");
-		for (Map.Entry<String, Integer> entry : hashMap.entrySet()) {
+		System.out.println("expected map size is '1', test result is '" + map.size() + "'");
+		for (Map.Entry<String, Integer> entry : map.entrySet()) {
 			System.out.println("entry : " + entry);
 		}
 	}

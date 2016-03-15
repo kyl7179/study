@@ -30,13 +30,13 @@ public class HashMapIsNotThreadSafeSecondTest {
 
 	}
 
-	private static void test(final Map<String, Integer> hashMap) throws InterruptedException {
+	private static void test(final Map<String, Integer> map) throws InterruptedException {
 		ExecutorService service = Executors.newFixedThreadPool(10);
 		for (int i = 0; i < 1000; i++) {
 			final int finalI = i;
 			service.execute(new Runnable() {
 				public void run() {
-					hashMap.remove("" + finalI);
+					map.remove("" + finalI);
 				}
 			});
 		}
@@ -45,6 +45,6 @@ public class HashMapIsNotThreadSafeSecondTest {
 
 		service.shutdown();
 
-		System.out.println("expected map size is '0', test result is '" + hashMap.size() + "'");
+		System.out.println("expected map size is '0', test result is '" + map.size() + "'");
 	}
 }

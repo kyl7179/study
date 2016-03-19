@@ -1,4 +1,4 @@
-package me.shawn.study.java;
+package me.shawn.study.java.threadsafe.hashmap;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author shawn.ctl
  */
-public class HashMapIsNotThreadSafeSecondTest {
+public class HashMapIsNotThreadSafeSecondStudy {
 	public static void main(String[] args) throws InterruptedException {
 		final HashMap<String, Integer> hashMap = new HashMap<String, Integer>();
 		final ConcurrentHashMap<String, Integer> concurrentHashMap = new ConcurrentHashMap<String, Integer>();
